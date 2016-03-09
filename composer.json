@@ -1,0 +1,38 @@
+{
+    "name": "praswicaksono/lazy-collection",
+    "type": "Library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Prasetyo Wicaksono",
+            "email": "pras@tuta.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "nikic/iter": "^1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.2",
+        "squizlabs/php_codesniffer": "^2.5"
+    },
+    "autoload" : {
+        "psr-4": {
+            "PrasWicaksono\\LazyCollection\\": "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "test": "vendor/bin/phpunit --coverage-text --coverage-clover ./build/logs/clover.xml",
+        "cs": "vendor/bin/phpcs",
+        "cs-fix": "vendor/bin/phpcbf"
+    }
+}
