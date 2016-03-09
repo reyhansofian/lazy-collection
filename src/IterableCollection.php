@@ -4,7 +4,7 @@ namespace PrasWicaksono\LazyCollection;
 
 use Generator;
 
-class IterableCollection implements Collection
+final class IterableCollection implements Collection
 {
     private $elements;
 
