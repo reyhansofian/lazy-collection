@@ -56,19 +56,19 @@ interface Collection extends Countable, IteratorAggregate
     public function reductions(callable $function, $startValue = null);
 
     /**
-     * @param array[]|\Traversable
+     * @param array []|\Traversable
      * @return Collection
      */
     public function zip(...$iterables);
 
     /**
-     * @param array[]|\Traversable
+     * @param array []|\Traversable
      * @return Collection
      */
     public function chain(...$iterables);
 
     /**
-     * @param array[]|\Traversable
+     * @param array []|\Traversable
      * @return Collection
      */
     public function product(...$iterables);

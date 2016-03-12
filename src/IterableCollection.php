@@ -311,14 +311,6 @@ final class IterableCollection implements Collection
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
-    {
-        return \iter\toIter($this->elements);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function toArray()
     {
         $toArray = \iter\toArrayWithKeys($this->elements);
@@ -328,5 +320,13 @@ final class IterableCollection implements Collection
         }
 
         return $toArray;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIterator()
+    {
+        return \iter\toIter($this->elements);
     }
 }
