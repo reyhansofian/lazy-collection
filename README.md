@@ -2,12 +2,14 @@ Lazy Collection
 ===
 [![Build Status](https://travis-ci.org/praswicaksono/lazy-collection.svg?branch=master)](https://travis-ci.org/praswicaksono/lazy-collection)
 
+Port the [original version](https://github.com/praswicaksono/lazy-collection) for PHP >= 5.6
+
 This collection implement [nikic/iter](https://github.com/nikic/iter) to provide lazy initialization and operation by using `Generator`
 
 Installation
 ===
 
-`composer require praswicaksono/lazy-collection dev-master`
+`composer require reyhansofian/lazy-collection dev-master`
 
 Usage
 ===

@@ -1,6 +1,6 @@
 <?php
 
-namespace PrasWicaksono\LazyCollection;
+namespace LazyCollection\LazyCollection;
 
 use Countable;
 use IteratorAggregate;
@@ -15,19 +15,19 @@ interface Collection extends Countable, IteratorAggregate
      * @param callable $function
      * @return Collection
      */
-    public function map(callable $function) : Collection;
+    public function map(callable $function);
 
     /**
      * @param callable $function
      * @return Collection
      */
-    public function mapKeys(callable $function) : Collection;
+    public function mapKeys(callable $function);
 
     /**
      * @param callable $function
      * @return Collection
      */
-    public function reindex(callable $function) : Collection;
+    public function reindex(callable $function);
 
     /**
      * @param callable $function
@@ -39,7 +39,7 @@ interface Collection extends Countable, IteratorAggregate
      * @param callable $predicate
      * @return Collection
      */
-    public function filter(callable $predicate) : Collection;
+    public function filter(callable $predicate);
 
     /**
      * @param callable $function
@@ -53,37 +53,37 @@ interface Collection extends Countable, IteratorAggregate
      * @param null $startValue
      * @return Collection
      */
-    public function reductions(callable $function, $startValue = null) : Collection;
+    public function reductions(callable $function, $startValue = null);
 
     /**
      * @param array[]|\Traversable
      * @return Collection
      */
-    public function zip(...$iterables) : Collection;
+    public function zip(...$iterables);
 
     /**
      * @param array[]|\Traversable
      * @return Collection
      */
-    public function chain(...$iterables) : Collection;
+    public function chain(...$iterables);
 
     /**
      * @param array[]|\Traversable
      * @return Collection
      */
-    public function product(...$iterables) : Collection;
+    public function product(...$iterables);
 
     /**
      * @param int $num
      * @return Collection
      */
-    public function take(int $num) : Collection;
+    public function take($num);
 
     /**
      * @param int $num
      * @return Collection
      */
-    public function drop(int $num) : Collection;
+    public function drop($num);
 
     /**
      * @param callable $function
@@ -94,27 +94,27 @@ interface Collection extends Countable, IteratorAggregate
     /**
      * @return Collection
      */
-    public function flatten() : Collection;
+    public function flatten();
 
     /**
      * @return Collection
      */
-    public function flip() : Collection;
+    public function flip();
 
     /**
      * @param int $size
      * @return Collection
      */
-    public function chunk(int $size) : Collection;
+    public function chunk($size);
 
     /**
      * @param string $seperator
      * @return string
      */
-    public function join(string $seperator) : string;
+    public function join($seperator);
 
     /**
      * @return array
      */
-    public function toArray() : array;
+    public function toArray();
 }

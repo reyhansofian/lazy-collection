@@ -1,10 +1,10 @@
 <?php
 
-namespace PrasWicaksono\LazyCollection;
+namespace LazyCollection\LazyCollection;
 
 /**
  * Class IterableCollection
- * @package PrasWicaksono\LazyCollection
+ * @package LazyCollection\LazyCollection
  */
 final class IterableCollection implements Collection
 {
@@ -25,46 +25,78 @@ final class IterableCollection implements Collection
     /**
      * @param array $elements
      * @return IterableCollection
+     * @throws
      */
-    public static function fromArray(array $elements) : IterableCollection
+    public static function fromArray(array $elements)
     {
-        return new static($elements);
+        $static = new static($elements);
+
+        if (!$static instanceof IterableCollection) {
+            throw new \Exception('Not instance of IterableCollection');
+        }
+
+        return $static;
     }
 
     /**
      * @param \Generator $elements
      * @return IterableCollection
+     * @throws
      */
-    public static function fromGenerator(\Generator $elements) : IterableCollection
+    public static function fromGenerator(\Generator $elements)
     {
-        return new static($elements);
+        $static = new static($elements);
+
+        if (!$static instanceof IterableCollection) {
+            throw new \Exception('Not instance of IterableCollection');
+        }
+
+        return $static;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function map(callable $function) : Collection
+    public function map(callable $function)
     {
         $this->elements = \iter\map($function, \iter\toIter($this->elements));
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function mapKeys(callable $function) : Collection
+    public function mapKeys(callable $function)
     {
         $this->elements = \iter\mapKeys($function, \iter\toIter($this->elements));
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reindex(callable $function) : Collection
+    public function reindex(callable $function)
     {
         $this->elements = \iter\reindex($function, \iter\toIter($this->elements));
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
@@ -78,11 +110,16 @@ final class IterableCollection implements Collection
     /**
      * {@inheritdoc}
      */
-    public function filter(callable $predicate) : Collection
+    public function filter(callable $predicate)
     {
         $this->elements = \iter\filter($predicate, \iter\toIter($this->elements));
+        $that = clone $this;
 
-        return clone $this;
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
@@ -96,52 +133,96 @@ final class IterableCollection implements Collection
     /**
      * {@inheritdoc}
      */
-    public function reductions(callable $function, $startValue = null) : Collection
+    public function reductions(callable $function, $startValue = null)
     {
         $this->elements = \iter\reductions($function, \iter\toIter($this->elements), $startValue);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function zip(...$iterables) : Collection
+    public function zip(...$iterables)
     {
         $this->elements = \iter\zip(\iter\toIter($this->elements), ...$iterables);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function chain(...$iterables) : Collection
+    public function chain(...$iterables)
     {
         $this->elements = \iter\chain(\iter\toIter($this->elements), ...$iterables);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function product(...$iterables) : Collection
+    public function product(...$iterables)
     {
         $this->elements = \iter\chain(\iter\toIter($this->elements), ...$iterables);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
-    public function take(int $num) : Collection
+    public function take($num)
     {
+        if (!is_int($num)) {
+            throw new \Exception('Must be integer');
+        }
+
         $this->elements = \iter\slice(\iter\toIter($this->elements), 0, $num);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function drop(int $num) : Collection
+    public function drop($num)
     {
+        if (!is_int($num)) {
+            throw new \Exception('Must be integer');
+        }
+
         $this->elements = \iter\slice(\iter\toIter($this->elements), $num);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
@@ -155,36 +236,68 @@ final class IterableCollection implements Collection
     /**
      * {@inheritdoc}
      */
-    public function flatten() : Collection
+    public function flatten()
     {
         $this->elements = \iter\flatten(\iter\toIter($this->elements));
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function flip() : Collection
+    public function flip()
     {
         $this->elements = \iter\flip(\iter\toIter($this->elements));
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function chunk(int $size) : Collection
+    public function chunk($size)
     {
+        if (!is_int($size)) {
+            throw new \Exception('Must be integer');
+        }
+
         $this->elements = \iter\chunk(\iter\toIter($this->elements), $size);
-        return clone $this;
+        $that = clone $this;
+
+        if (!$that instanceof Collection) {
+            throw new \Exception('Not instance of Collection');
+        }
+
+        return $that;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function join(string $separator) : string
+    public function join($separator)
     {
-        return \iter\join($separator, \iter\toIter($this->elements));
+        if (!is_string($separator)) {
+            throw new \Exception('Must be string');
+        }
+
+        $joinSeparator = \iter\join($separator, \iter\toIter($this->elements));
+
+        if (!is_string($joinSeparator)) {
+            throw new \Exception('Must be string');
+        }
+
+        return $joinSeparator;
     }
 
     /**
@@ -206,8 +319,14 @@ final class IterableCollection implements Collection
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray()
     {
-        return \iter\toArrayWithKeys($this->elements);
+        $toArray = \iter\toArrayWithKeys($this->elements);
+
+        if (!is_array($toArray)) {
+            throw new \Exception('Must be array');
+        }
+
+        return $toArray;
     }
 }
