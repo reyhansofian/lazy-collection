@@ -2,8 +2,7 @@
 
 namespace Test;
 
-use PrasWicaksono\LazyCollection\IterableCollection;
-use Generator;
+use LazyCollection\IterableCollection;
 
 class IterableCollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -88,7 +87,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $iterable = function () {
             for ($i = 1; $i <= 5; $i++) {
-                yield ['id' => $i*10, 'value' => $i];
+                yield ['id' => $i * 10, 'value' => $i];
             }
         };
 
@@ -112,7 +111,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $iterable = function () {
             for ($i = 1; $i <= 5; $i++) {
-                yield $i*10;
+                yield $i * 10;
             }
         };
 
@@ -137,7 +136,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $iterable = function () {
             for ($i = 1; $i <= 5; $i++) {
-                yield $i*10;
+                yield $i * 10;
             }
         };
 
@@ -166,7 +165,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
         };
 
         $reducedCollection = IterableCollection::fromGenerator($iterable())->reduce(function ($acc, $value, $key) {
-            return $acc+$value;
+            return $acc + $value;
         });
 
         $this->assertEquals(15, $reducedCollection);
@@ -184,7 +183,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
         };
 
         $reducedCollection = IterableCollection::fromGenerator($iterable())->reductions(function ($acc, $value, $key) {
-            return $acc+$value;
+            return $acc + $value;
         });
 
         $expectedValues = [1, 3, 6, 10, 15];
@@ -245,7 +244,7 @@ class IterableCollectionTest extends \PHPUnit_Framework_TestCase
         $chainedCollection = IterableCollection::fromGenerator($iterable())->chain($iterable2());
 
         $expectedValues = [
-            1,2,3,4,5,6,7,8,9,10
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         ];
 
         $i = 0;
