@@ -2,7 +2,7 @@
 
 namespace Test;
 
-use LazyCollection\IterableCollection;
+use LazyCollection\LazyCollection\IterableCollection;
 
 class IterableCollectionTest extends \PHPUnit_Framework_TestCase
 {
